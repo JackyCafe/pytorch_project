@@ -1,10 +1,9 @@
 from torch.autograd import Variable
 
-from . import Dataset
 from machine import TrainConfig
 
 
-class RegressData(Dataset):
+class DataSet:
     _train_rate: float
     _test_rate: float
     _size: int
@@ -37,8 +36,3 @@ class RegressData(Dataset):
     def y_train(self):
         return self._y_train
 
-    def to_cuda(self):
-       pass
-
-    def to_cpu(self):
-        pass

@@ -5,7 +5,7 @@ import torch
 from fancy import config as cfg
 from torch import linspace, Tensor
 from torch.autograd import Variable
-from dataset import RegressData
+from dataset import DataSet
 from machine import TrainConfig
 import matplotlib.pyplot as plt
 
@@ -14,9 +14,9 @@ def main():
     args = get_arg_parser().parse_args()
     config: TrainConfig = TrainConfig(cfg.YamlConfigLoader(args.train_config))
     x = Variable(linspace(0,100).type(torch.FloatTensor))
-    rand = Variable(torch.randn(100))*100
+    rand = Variable(torch.randn(100))*10
     y = 3*x+rand
-    regress = RegressData(x,y,config)
+    regress = DataSet(x, y, config)
     x_train = regress.x_train.cuda()
     y_train = regress.y_train.cuda()
     a:Tensor = Variable(torch.rand(1).cuda(),requires_grad = True)
